@@ -18,10 +18,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val fragmentManger = supportFragmentManager
+        val contactListFragment = ContactListFragment()
+        val transaction = fragmentManger.beginTransaction()
+        transaction.add(R.id.frameLayout, contactListFragment).commitAllowingStateLoss()
     }
 }
