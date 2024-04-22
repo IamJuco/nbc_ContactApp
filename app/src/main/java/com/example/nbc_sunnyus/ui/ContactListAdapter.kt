@@ -54,10 +54,10 @@ class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adap
         }
     }
 
-    inner class EvenViewHolder(private val binding: RecyclerviewEvenBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: UserInfo) {
-            var isClickEvent = false
+    class EvenViewHolder(private val binding: RecyclerviewEvenBinding) : RecyclerView.ViewHolder(binding.root) {
+        private var isClickEvent = false
 
+        fun bind(item: UserInfo) {
             binding.apply {
                 ivImage.setImageResource(item.image)
                 tvPhoneNumber.text = item.phoneNumber
@@ -76,9 +76,10 @@ class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adap
         }
     }
 
-    inner class OddViewHolder(private val binding: RecyclerviewOddBinding) : RecyclerView.ViewHolder(binding.root) {
+    class OddViewHolder(private val binding: RecyclerviewOddBinding) : RecyclerView.ViewHolder(binding.root) {
+        private var isClickEvent = false
+
         fun bind(item: UserInfo) {
-            var isClickEvent = false
             binding.apply {
                 ivImage.setImageResource(item.image)
                 tvPhoneNumber.text = item.phoneNumber
