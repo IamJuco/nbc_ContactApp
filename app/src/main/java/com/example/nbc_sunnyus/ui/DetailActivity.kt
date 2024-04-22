@@ -24,5 +24,6 @@ class DetailActivity : AppCompatActivity() {
             insets
         }
 
+
     }
 }
