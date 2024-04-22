@@ -1,5 +1,6 @@
 package com.example.nbc_sunnyus.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.nbc_sunnyus.data.dummyItem
 import com.example.nbc_sunnyus.databinding.FragmentContactListBinding
+import com.example.nbc_sunnyus.util.Constants
 
 class ContactListFragment : Fragment() {
 
@@ -20,9 +22,6 @@ class ContactListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentContactListBinding.inflate(inflater, container, false)
-
-
-
         return binding.root
     }
 
@@ -30,8 +29,9 @@ class ContactListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpData() // 데이터 초기 값
         setUpView() // 초기 뷰 설정 (뷰가 터치된 상태 등)
-        setUpListener() // 리스너를 모아두는곳 (클릭리스너 등)
         setRecyclerView()
+        setUpListener() // 리스너를 모아두는곳 (클릭리스너 등)
+
     }
 
     private fun setUpData() {
@@ -43,7 +43,14 @@ class ContactListFragment : Fragment() {
     }
 
     private fun setUpListener() {
-//        TODO("Not yet implemented")
+        contactListAdapter.setItemClickListener(object : ContactListAdapter.OnItemClickListener {
+            override fun onClick(v: View, position: Int) {
+                val item = contactListAdapter.getItem(position)
+                val intent = Intent(context, DetailActivity::class.java)
+                intent.putExtra(Constants.KEY_USER, item)
+                startActivity(intent)
+            }
+        })
     }
 
     private fun setRecyclerView() {

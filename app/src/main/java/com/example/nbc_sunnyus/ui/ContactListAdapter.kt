@@ -1,6 +1,7 @@
 package com.example.nbc_sunnyus.ui
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nbc_sunnyus.R
@@ -10,6 +11,20 @@ import com.example.nbc_sunnyus.model.UserInfo
 import java.lang.Exception
 
 class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
+    private lateinit var itemClickListener: OnItemClickListener
+
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
+    }
+
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
+
+    fun getItem(position: Int): UserInfo {
+        return items[position]
+    }
 
     companion object {
         const val EVEN_VIEW_TYPE = 0 // 짝수 multi-type
@@ -44,6 +59,9 @@ class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adap
                 (holder as OddViewHolder).bind(item)
             }
         }
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -70,7 +88,6 @@ class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adap
                     } else {
                         ivFavorite.setImageResource(R.drawable.img_empty_favorite)
                     }
-
                 }
             }
         }
@@ -92,8 +109,8 @@ class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adap
                     } else {
                         ivFavorite.setImageResource(R.drawable.img_empty_favorite)
                     }
-
                 }
+
             }
         }
     }
