@@ -5,24 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.nbc_sunnyus.databinding.FragmentContactListBinding
 
 class ContactListFragment : Fragment() {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setUpData() // 데이터 초기 값
-        setUpView() // 초기 뷰 설정 (뷰가 터치된 상태 등)
-        setUpListener() // 리스너를 모아두는곳 (클릭리스너 등)
-
-    }
+    private lateinit var binding: FragmentContactListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        binding = FragmentContactListBinding.inflate(inflater, container, false)
+
+
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpData() // 데이터 초기 값
+        setUpView() // 초기 뷰 설정 (뷰가 터치된 상태 등)
+        setUpListener() // 리스너를 모아두는곳 (클릭리스너 등)
     }
 
     private fun setUpData() {
