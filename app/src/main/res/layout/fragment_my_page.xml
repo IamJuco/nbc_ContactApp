@@ -107,7 +107,7 @@
                 android:layout_width="0dp"
                 android:layout_height="300dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/imgm"
+                android:src="@drawable/img_my_page2"
                 app:layout_constraintEnd_toEndOf="@id/tv_image"
                 app:layout_constraintStart_toStartOf="@id/tv_image"
                 app:layout_constraintTop_toBottomOf="@id/tv_image" />
