@@ -24,5 +24,4 @@ class MyPageFragment : Fragment() {
         return binding.root
     }
 
-
 }

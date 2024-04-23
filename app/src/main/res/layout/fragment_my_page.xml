@@ -114,18 +114,4 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-    <!--        android:id="@+id/fab"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginEnd="10dp"-->
-    <!--        android:layout_marginBottom="10dp"-->
-    <!--        android:visibility="visible"-->
-    <!--        app:backgroundTint="@color/selector_bg"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:shapeAppearanceOverlay="@style/round"-->
-    <!--        app:srcCompat="@drawable/ic_baseline_add" />-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
