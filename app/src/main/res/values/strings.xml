@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">nbc_SunnyUs</string>
+    <string name="main_contact">연락처</string>
+    <string name="main_mypage">마이페이지</string>
 </resources>
