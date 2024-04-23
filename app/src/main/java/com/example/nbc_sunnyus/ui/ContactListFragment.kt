@@ -38,13 +38,8 @@ class ContactListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpData()
-        setUpView() // 초기 뷰 설정 (뷰가 터치된 상태 등)
         setRecyclerView()
         setUpListener() // 리스너를 모아두는곳 (클릭리스너 등)
-    }
-
-    private fun setUpView() {
-//        TODO("Not yet implemented")
     }
 
     private fun setUpListener() {
