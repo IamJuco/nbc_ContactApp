@@ -1,6 +1,7 @@
 package com.example.nbc_sunnyus.ui
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.nbc_sunnyus.data.dummyItem
 import com.example.nbc_sunnyus.databinding.FragmentContactListBinding
+import com.example.nbc_sunnyus.model.UserInfo
 import com.example.nbc_sunnyus.util.Constants
 
 class ContactListFragment : Fragment() {
@@ -15,6 +17,14 @@ class ContactListFragment : Fragment() {
     private lateinit var binding: FragmentContactListBinding
 
     private lateinit var contactListAdapter: ContactListAdapter
+
+    private val userInfo by lazy {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelableArrayList(Constants.KEY_USER, UserInfo::class.java)
+        } else {
+            arguments?.getParcelableArrayList(Constants.KEY_USER)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,15 +37,10 @@ class ContactListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpData() // 데이터 초기 값
+        setUpData()
         setUpView() // 초기 뷰 설정 (뷰가 터치된 상태 등)
         setRecyclerView()
         setUpListener() // 리스너를 모아두는곳 (클릭리스너 등)
-
-    }
-
-    private fun setUpData() {
-//        TODO("Not yet implemented")
     }
 
     private fun setUpView() {
@@ -51,6 +56,15 @@ class ContactListFragment : Fragment() {
                 startActivity(intent)
             }
         })
+    }
+
+    private fun setUpData() {
+        userInfo?.let { fetchData(it) }
+    }
+
+    private fun fetchData(data: List<UserInfo>) {
+        contactListAdapter = ContactListAdapter(data)
+        binding.rvMain.adapter = contactListAdapter
     }
 
     private fun setRecyclerView() {

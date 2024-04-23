@@ -10,7 +10,8 @@ import com.example.nbc_sunnyus.databinding.RecyclerviewOddBinding
 import com.example.nbc_sunnyus.model.UserInfo
 import java.lang.Exception
 
-class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class ContactListAdapter(private val items: List<UserInfo>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var itemClickListener: OnItemClickListener
 
@@ -32,15 +33,25 @@ class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adap
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when(viewType) {
+        return when (viewType) {
             EVEN_VIEW_TYPE -> {
-                val binding = RecyclerviewEvenBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding = RecyclerviewEvenBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
                 EvenViewHolder(binding)
             }
+
             ODD_VIEW_TYPE -> {
-                val binding = RecyclerviewOddBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding = RecyclerviewOddBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
                 OddViewHolder(binding)
             }
+
             else -> throw Exception("Type Error") // 선택된 Type이 없을때
         }
     }
@@ -55,6 +66,7 @@ class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adap
             EVEN_VIEW_TYPE -> {
                 (holder as EvenViewHolder).bind(item)
             }
+
             ODD_VIEW_TYPE -> {
                 (holder as OddViewHolder).bind(item)
             }
@@ -65,14 +77,15 @@ class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adap
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position % 2 == 0){
+        return if (position % 2 == 0) {
             EVEN_VIEW_TYPE
         } else {
             ODD_VIEW_TYPE
         }
     }
 
-    class EvenViewHolder(private val binding: RecyclerviewEvenBinding) : RecyclerView.ViewHolder(binding.root) {
+    class EvenViewHolder(private val binding: RecyclerviewEvenBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         private var isClickEvent = false
 
         fun bind(item: UserInfo) {
@@ -83,7 +96,7 @@ class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adap
                 ivFavorite.setOnClickListener {
                     isClickEvent = !isClickEvent
 
-                    if (isClickEvent){
+                    if (isClickEvent) {
                         ivFavorite.setImageResource(R.drawable.img_favorite)
                     } else {
                         ivFavorite.setImageResource(R.drawable.img_empty_favorite)
@@ -93,7 +106,8 @@ class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adap
         }
     }
 
-    class OddViewHolder(private val binding: RecyclerviewOddBinding) : RecyclerView.ViewHolder(binding.root) {
+    class OddViewHolder(private val binding: RecyclerviewOddBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         private var isClickEvent = false
 
         fun bind(item: UserInfo) {
@@ -104,13 +118,12 @@ class ContactListAdapter (private val items: List<UserInfo>) : RecyclerView.Adap
                 ivFavorite.setOnClickListener {
                     isClickEvent = !isClickEvent
 
-                    if (isClickEvent){
+                    if (isClickEvent) {
                         ivFavorite.setImageResource(R.drawable.img_favorite)
                     } else {
                         ivFavorite.setImageResource(R.drawable.img_empty_favorite)
                     }
                 }
-
             }
         }
     }

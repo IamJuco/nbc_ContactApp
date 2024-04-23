@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class UserInfo (
+data class UserInfo(
     val name: String, // 이름
     val phoneNumber: String, // 전화번호
     val email: String, // 이메일
