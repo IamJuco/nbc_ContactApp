@@ -22,14 +22,14 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="85dp"
         android:backgroundTint="@color/clr_FF7900"
-        android:contentDescription="@string/main_contact"
+        android:contentDescription="@string/main_floatingbtn"
         android:src="@drawable/btn_contact"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="30dp"
-        app:shapeAppearanceOverlay="@style/Circle"/>
+        app:shapeAppearanceOverlay="@style/Circle" />
 
 
     <com.google.android.material.tabs.TabLayout
