@@ -50,9 +50,7 @@ class ContactDetailActivity : AppCompatActivity() {
 
         // 플로팅 버튼 클릭하여 다이얼로그 띄우기
         binding.btnFloating.setOnClickListener {
-//            val dialogInflater = LayoutInflater.from(this)
-//            val addContactDialog = DialogAdd(this, dialogInflater)
-//            addContactDialog.show()
+            // TODO
         }
 
         // 뒤로 가기 버튼(화면)
