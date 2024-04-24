@@ -28,7 +28,6 @@ class ContactListFragment : Fragment() {
     ): View? {
         _binding = FragmentContactListBinding.inflate(inflater, container, false)
         return binding.root
-        //return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     private fun setUpData() {
