@@ -29,8 +29,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="30dp"
-        app:shapeAppearanceOverlay="@style/Theme.Nbc_SunnyUs"/>
-  <!--검색해보기-->
+        app:shapeAppearanceOverlay="@style/Circle"/>
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout_main"

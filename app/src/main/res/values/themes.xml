@@ -6,4 +6,8 @@
     </style>
     <!--Material을 상속하기 때문에 MaterialComponents로 해야함-->
     <style name="Theme.Nbc_SunnyUs" parent="Theme.MaterialComponents.Light.DarkActionBar" />
+
+    <style name="Circle">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
