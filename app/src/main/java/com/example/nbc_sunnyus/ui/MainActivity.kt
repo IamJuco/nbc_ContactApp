@@ -26,7 +26,9 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        //initViewPager() 사용안함
+        //화면맨위의 액션바 숨기기
+        supportActionBar?.hide()
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -42,7 +44,6 @@ class MainActivity : AppCompatActivity() {
             }.attach()
 
         }
-
 
         //플러팅 버튼 누르면 다이얼로그
         binding.floatingbtnMain.setOnClickListener {

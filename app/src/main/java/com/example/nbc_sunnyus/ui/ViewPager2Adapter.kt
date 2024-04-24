@@ -20,4 +20,5 @@ class ViewPager2Adapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) 
             else -> return MyPageFragment()
         }
     }
+
 }
