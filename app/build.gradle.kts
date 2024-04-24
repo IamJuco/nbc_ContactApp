@@ -56,6 +56,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    //플러팅 버튼 종속성 추가
+    //플러팅 버튼 - material 의존성 추가
     implementation(libs.material.v130alpha02)
 }
