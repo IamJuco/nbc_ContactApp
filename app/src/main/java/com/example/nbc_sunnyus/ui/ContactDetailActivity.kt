@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.nbc_sunnyus.R
+import com.example.nbc_sunnyus.data.dummyItem
 import com.example.nbc_sunnyus.databinding.ActivityContactDetailBinding
 import com.example.nbc_sunnyus.model.UserInfo
+import com.example.nbc_sunnyus.util.Constants
 
 class ContactDetailActivity : AppCompatActivity() {
 
@@ -19,9 +21,9 @@ class ContactDetailActivity : AppCompatActivity() {
     // ContactListFragment로부터 받은 데이터에 접근
     private val userInfo by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            intent.getParcelableExtra<UserInfo>("item")
+            intent.getParcelableExtra<UserInfo>(Constants.KEY_USER)
         } else {
-            intent.getParcelableExtra<UserInfo>("item")
+            intent.getParcelableExtra<UserInfo>(Constants.KEY_USER)
         }
     }
 
