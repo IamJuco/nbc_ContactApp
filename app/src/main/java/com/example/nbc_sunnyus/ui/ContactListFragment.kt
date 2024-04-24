@@ -38,9 +38,10 @@ class ContactListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpData()
         setRecyclerView()
+        setUpData()
         setUpListener() // 리스너를 모아두는곳 (클릭리스너 등)
+
     }
 
     private fun setUpListener() {
