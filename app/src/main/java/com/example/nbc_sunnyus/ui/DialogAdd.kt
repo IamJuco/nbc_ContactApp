@@ -9,13 +9,12 @@ import com.example.nbc_sunnyus.databinding.DialogAddBinding
 import com.example.nbc_sunnyus.model.UserInfo
 
 
-//interface UserInfoListener {
-//    fun onUserInfoReceived(data: UserInfo)
-//}
+
 class DialogAdd(
     private val context: Context,
     private val layoutInflater: LayoutInflater,
     private val userInfo: ArrayList<UserInfo>
+
 ) {
 
     private lateinit var binding: DialogAddBinding
@@ -34,15 +33,7 @@ class DialogAdd(
         dialog = builder.create()
         dialog.show()
 
-        // 저장 버튼 클릭 설정
-        binding.btnSave.setOnClickListener {
-            saveContact()
-        }
-
-        // 취소 버튼 클릭 설정
-        binding.btnCancel.setOnClickListener {
-            dialog.dismiss()
-        }
+        userInfoListener()
     }
 
     // 데이터 저장
@@ -52,6 +43,8 @@ class DialogAdd(
         val email = binding.etEmail.text.toString()
         val team = binding.etTeam.text.toString()
 
+
+
         userInfo.add(UserInfo(
             name, phoneNumber, email, team, R.drawable.ic_launcher_foreground
         ))
@@ -59,5 +52,17 @@ class DialogAdd(
         // 저장 후 메시지 표시
         Toast.makeText(context, "연락처 추가가 완료되었습니다", Toast.LENGTH_SHORT).show()
         dialog.dismiss()
+    }
+
+    private fun userInfoListener() {
+        // 저장 버튼 클릭 설정
+        binding.btnSave.setOnClickListener {
+            saveContact()
+        }
+
+        // 취소 버튼 클릭 설정
+        binding.btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
     }
 }
