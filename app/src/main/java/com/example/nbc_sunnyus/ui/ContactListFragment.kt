@@ -56,7 +56,8 @@ class ContactListFragment : Fragment() {
 
     private fun setUpData() {
         userInfo?.let {
-            contactListAdapter.addData(it,contactListAdapter.itemCount) }
+            contactListAdapter.addData(it, contactListAdapter.itemCount)
+        }
     }
 
     private fun setRecyclerView() {

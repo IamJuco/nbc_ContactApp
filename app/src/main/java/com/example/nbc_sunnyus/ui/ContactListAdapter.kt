@@ -10,7 +10,8 @@ import com.example.nbc_sunnyus.databinding.RecyclerviewOddBinding
 import com.example.nbc_sunnyus.model.UserInfo
 import java.lang.Exception
 
-class ContactListAdapter(private val items: MutableList<UserInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ContactListAdapter(private val items: MutableList<UserInfo>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var itemClickListener: OnItemClickListener
 
@@ -55,6 +56,7 @@ class ContactListAdapter(private val items: MutableList<UserInfo>) : RecyclerVie
                 )
                 OddViewHolder(binding)
             }
+
             else -> throw Exception("Type Error") // 선택된 Type이 없을때
         }
     }
