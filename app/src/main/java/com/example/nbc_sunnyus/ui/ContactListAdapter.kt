@@ -1,6 +1,5 @@
 package com.example.nbc_sunnyus.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -93,7 +92,6 @@ class ContactListAdapter(private val items: MutableList<UserInfo>) : RecyclerVie
         private var isClickEvent = false
 
         fun bind(item: UserInfo) {
-            Log.d("juseonghyun","이미지 -> ${item}")
             binding.apply {
                 ivImage.setImageResource(item.image)
                 tvPhoneNumber.text = item.phoneNumber

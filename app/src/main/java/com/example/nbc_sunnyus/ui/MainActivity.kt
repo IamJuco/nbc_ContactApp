@@ -24,10 +24,5 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        val fragmentManger = supportFragmentManager
-        val contactListFragment = ContactListFragment()
-        val transaction = fragmentManger.beginTransaction()
-        transaction.add(R.id.frameLayout, contactListFragment).commitAllowingStateLoss()
     }
 }
