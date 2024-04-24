@@ -5,10 +5,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.widget.Toast
 import com.example.nbc_sunnyus.databinding.DialogAddBinding
+import com.example.nbc_sunnyus.model.UserInfo
 
+
+interface UserInfoListener {
+    fun onUserInfoReceived(data: UserInfo)
+}
 class DialogAdd(
     private val context: Context,
-    private val layoutInflater: LayoutInflater // LayoutInflater 추가
+    private val layoutInflater: LayoutInflater,
 ) {
 
     private lateinit var binding: DialogAddBinding
@@ -43,7 +48,7 @@ class DialogAdd(
         val name = binding.etName.text.toString()
         val phoneNumber = binding.etPhoneNumber.text.toString()
         val email = binding.etEmail.text.toString()
-        val organization = binding.etOrganization.text.toString()
+        val team = binding.etTeam.text.toString()
 
         // 저장 후 메시지 표시
         Toast.makeText(context, "연락처 추가가 완료되었습니다", Toast.LENGTH_SHORT).show()

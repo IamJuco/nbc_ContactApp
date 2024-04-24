@@ -66,13 +66,13 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
-        android:id="@+id/et_organization"
+        android:id="@+id/et_team"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:hint="@string/dialog_add_organization_tag"
+        android:hint="@string/dialog_add_team_tag"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/et_email"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +91,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_organization"
+        app:layout_constraintTop_toBottomOf="@+id/et_team"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintWidth_percent="0.4"/>
@@ -109,7 +109,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/et_organization"
+        app:layout_constraintTop_toBottomOf="@+id/et_team"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintWidth_percent="0.4"/>
