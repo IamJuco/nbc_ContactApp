@@ -20,9 +20,9 @@ class ContactListFragment : Fragment() {
 
     private val userInfo by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelableArrayList(Constants.KEY_USER, UserInfo::class.java)
+            arguments?.getParcelable(Constants.KEY_USER, UserInfo::class.java)
         } else {
-            arguments?.getParcelableArrayList(Constants.KEY_USER)
+            arguments?.getParcelable(Constants.KEY_USER)
         }
     }
 
@@ -37,6 +37,7 @@ class ContactListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setUpData()
         setRecyclerView()
         setUpListener() // 리스너를 모아두는곳 (클릭리스너 등)
@@ -54,16 +55,12 @@ class ContactListFragment : Fragment() {
     }
 
     private fun setUpData() {
-        userInfo?.let { fetchData(it) }
-    }
-
-    private fun fetchData(data: List<UserInfo>) {
-        contactListAdapter = ContactListAdapter(data)
-        binding.rvMain.adapter = contactListAdapter
+        userInfo?.let {
+            contactListAdapter.addData(it,contactListAdapter.itemCount) }
     }
 
     private fun setRecyclerView() {
-        contactListAdapter = ContactListAdapter(dummyItem)
+        contactListAdapter = ContactListAdapter(dummyItem.toMutableList())
         binding.rvMain.adapter = contactListAdapter
     }
 }

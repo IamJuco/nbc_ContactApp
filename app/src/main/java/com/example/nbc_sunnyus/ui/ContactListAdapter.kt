@@ -1,5 +1,6 @@
 package com.example.nbc_sunnyus.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,7 @@ import com.example.nbc_sunnyus.databinding.RecyclerviewOddBinding
 import com.example.nbc_sunnyus.model.UserInfo
 import java.lang.Exception
 
-class ContactListAdapter(private val items: List<UserInfo>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ContactListAdapter(private val items: MutableList<UserInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var itemClickListener: OnItemClickListener
 
@@ -25,6 +25,11 @@ class ContactListAdapter(private val items: List<UserInfo>) :
 
     fun getItem(position: Int): UserInfo {
         return items[position]
+    }
+
+    fun addData(item: UserInfo, position: Int) {
+        items.add(position, item)
+        notifyItemInserted(position)
     }
 
     companion object {
@@ -51,7 +56,6 @@ class ContactListAdapter(private val items: List<UserInfo>) :
                 )
                 OddViewHolder(binding)
             }
-
             else -> throw Exception("Type Error") // 선택된 Type이 없을때
         }
     }
@@ -89,6 +93,7 @@ class ContactListAdapter(private val items: List<UserInfo>) :
         private var isClickEvent = false
 
         fun bind(item: UserInfo) {
+            Log.d("juseonghyun","이미지 -> ${item}")
             binding.apply {
                 ivImage.setImageResource(item.image)
                 tvPhoneNumber.text = item.phoneNumber
