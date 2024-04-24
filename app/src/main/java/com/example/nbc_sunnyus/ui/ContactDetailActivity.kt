@@ -2,13 +2,13 @@ package com.example.nbc_sunnyus.ui
 
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.nbc_sunnyus.R
-import com.example.nbc_sunnyus.data.dummyItem
 import com.example.nbc_sunnyus.databinding.ActivityContactDetailBinding
 import com.example.nbc_sunnyus.model.UserInfo
 import com.example.nbc_sunnyus.util.Constants
@@ -20,7 +20,7 @@ class ContactDetailActivity : AppCompatActivity() {
         ActivityContactDetailBinding.inflate(layoutInflater)
     }
 
-    // ContactListFragment로부터 받은 데이터에 접근
+    // ContactListFragment로부터 받은 데이터에 접근 (P는 티라미슈 버전을 의미)
     private val userInfo by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             intent.getParcelableExtra<UserInfo>(Constants.KEY_USER, UserInfo::class.java)
@@ -48,9 +48,11 @@ class ContactDetailActivity : AppCompatActivity() {
             binding.tvTeamData.text = it.team
         }
 
-        // 플로팅 버튼
+        // 플로팅 버튼 클릭하여 다이얼로그 띄우기
         binding.btnFloating.setOnClickListener {
-            // todo: 연락처 추가(AddContactDialog) 및 데이터 전송 로직
+            val dialogInflater = LayoutInflater.from(/* context = */ this)
+            val addContactDialog = DialogAdd(this, dialogInflater)
+            addContactDialog.show()
         }
 
         // 뒤로 가기 버튼(화면)
@@ -60,6 +62,7 @@ class ContactDetailActivity : AppCompatActivity() {
     }
 
     // 뒤로 가기 버튼(디바이스)
+    // 싱글턴 객체로 ContactList에 데이터를 전달하므로 finish 처리
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()

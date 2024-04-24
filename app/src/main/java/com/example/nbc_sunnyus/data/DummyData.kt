@@ -3,7 +3,8 @@ package com.example.nbc_sunnyus.data
 import com.example.nbc_sunnyus.R
 import com.example.nbc_sunnyus.model.UserInfo
 
-val dummyItem = listOf(
+// mutableList로 변경
+val dummyItem = mutableListOf(
     UserInfo(
         name = "주성현",
         phoneNumber = "010-1234-1234",
