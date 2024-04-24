@@ -23,9 +23,9 @@ class ContactDetailActivity : AppCompatActivity() {
     // ContactListFragment로부터 받은 데이터에 접근 (P는 티라미슈 버전을 의미)
     private val userInfo by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            intent.getParcelableExtra<UserInfo>(Constants.KEY_USER, UserInfo::class.java)
+            intent?.getParcelableExtra(Constants.KEY_USER, UserInfo::class.java)
         } else {
-            intent.getParcelableExtra<UserInfo>(Constants.KEY_USER)
+            intent?.getParcelableExtra(Constants.KEY_USER)
         }
     }
 
@@ -50,9 +50,9 @@ class ContactDetailActivity : AppCompatActivity() {
 
         // 플로팅 버튼 클릭하여 다이얼로그 띄우기
         binding.btnFloating.setOnClickListener {
-            val dialogInflater = LayoutInflater.from(/* context = */ this)
-            val addContactDialog = DialogAdd(this, dialogInflater)
-            addContactDialog.show()
+//            val dialogInflater = LayoutInflater.from(this)
+//            val addContactDialog = DialogAdd(this, dialogInflater)
+//            addContactDialog.show()
         }
 
         // 뒤로 가기 버튼(화면)
