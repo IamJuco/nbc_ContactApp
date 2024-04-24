@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nbc_sunnyus.R
-import com.example.nbc_sunnyus.databinding.RecyclerviewEvenBinding
-import com.example.nbc_sunnyus.databinding.RecyclerviewOddBinding
+import com.example.nbc_sunnyus.databinding.ItemEvenBinding
+import com.example.nbc_sunnyus.databinding.ItemOddBinding
 import com.example.nbc_sunnyus.model.UserInfo
 import java.lang.Exception
 
@@ -32,15 +32,10 @@ class ContactListAdapter(private val items: MutableList<UserInfo>) :
         notifyItemInserted(position)
     }
 
-    companion object {
-        const val EVEN_VIEW_TYPE = 0 // 짝수 multi-type
-        const val ODD_VIEW_TYPE = 1 // 홀수 multi-type
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             EVEN_VIEW_TYPE -> {
-                val binding = RecyclerviewEvenBinding.inflate(
+                val binding = ItemEvenBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -49,7 +44,7 @@ class ContactListAdapter(private val items: MutableList<UserInfo>) :
             }
 
             ODD_VIEW_TYPE -> {
-                val binding = RecyclerviewOddBinding.inflate(
+                val binding = ItemOddBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -89,7 +84,12 @@ class ContactListAdapter(private val items: MutableList<UserInfo>) :
         }
     }
 
-    class EvenViewHolder(private val binding: RecyclerviewEvenBinding) :
+    companion object {
+        const val EVEN_VIEW_TYPE = 0 // 짝수 multi-type
+        const val ODD_VIEW_TYPE = 1 // 홀수 multi-type
+    }
+
+    class EvenViewHolder(private val binding: ItemEvenBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private var isClickEvent = false
 
@@ -111,7 +111,7 @@ class ContactListAdapter(private val items: MutableList<UserInfo>) :
         }
     }
 
-    class OddViewHolder(private val binding: RecyclerviewOddBinding) :
+    class OddViewHolder(private val binding: ItemOddBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private var isClickEvent = false
 

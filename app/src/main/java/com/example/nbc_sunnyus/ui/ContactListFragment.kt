@@ -3,10 +3,12 @@ package com.example.nbc_sunnyus.ui
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nbc_sunnyus.data.dummyItem
 import com.example.nbc_sunnyus.databinding.FragmentContactListBinding
 import com.example.nbc_sunnyus.model.UserInfo
@@ -39,7 +41,7 @@ class ContactListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setRecyclerView()
-        setUpData()
+        addData()
         setUpListener() // 리스너를 모아두는곳 (클릭리스너 등)
 
     }
@@ -55,14 +57,15 @@ class ContactListFragment : Fragment() {
         })
     }
 
-    private fun setUpData() {
+    private fun addData() {
         userInfo?.let {
             contactListAdapter.addData(it, contactListAdapter.itemCount)
-        }
+        } ?: Log.e("ContactListFragment", "Userinfo 값이 null 입니다.")
     }
 
     private fun setRecyclerView() {
         contactListAdapter = ContactListAdapter(dummyItem.toMutableList())
         binding.rvMain.adapter = contactListAdapter
+        binding.rvMain.layoutManager = LinearLayoutManager(context)
     }
 }
