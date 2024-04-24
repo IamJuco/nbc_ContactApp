@@ -38,7 +38,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
 }
 
 dependencies {
@@ -58,4 +57,8 @@ dependencies {
 
     //플러팅 버튼 - material 의존성 추가
     implementation(libs.material.v130alpha02)
+
+    //CircleView
+    implementation(libs.circleimageview)
+
 }
