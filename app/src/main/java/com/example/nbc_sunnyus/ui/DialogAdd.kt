@@ -4,16 +4,18 @@ import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.widget.Toast
+import com.example.nbc_sunnyus.R
 import com.example.nbc_sunnyus.databinding.DialogAddBinding
 import com.example.nbc_sunnyus.model.UserInfo
 
 
-interface UserInfoListener {
-    fun onUserInfoReceived(data: UserInfo)
-}
+//interface UserInfoListener {
+//    fun onUserInfoReceived(data: UserInfo)
+//}
 class DialogAdd(
     private val context: Context,
     private val layoutInflater: LayoutInflater,
+    private val userInfo: ArrayList<UserInfo>
 ) {
 
     private lateinit var binding: DialogAddBinding
@@ -49,6 +51,10 @@ class DialogAdd(
         val phoneNumber = binding.etPhoneNumber.text.toString()
         val email = binding.etEmail.text.toString()
         val team = binding.etTeam.text.toString()
+
+        userInfo.add(UserInfo(
+            name, phoneNumber, email, team, R.drawable.ic_launcher_foreground
+        ))
 
         // 저장 후 메시지 표시
         Toast.makeText(context, "연락처 추가가 완료되었습니다", Toast.LENGTH_SHORT).show()
