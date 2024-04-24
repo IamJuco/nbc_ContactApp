@@ -3,6 +3,7 @@ package com.example.nbc_sunnyus.ui
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -12,6 +13,7 @@ import com.example.nbc_sunnyus.databinding.ActivityContactDetailBinding
 import com.example.nbc_sunnyus.model.UserInfo
 import com.example.nbc_sunnyus.util.Constants
 
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 class ContactDetailActivity : AppCompatActivity() {
 
     private val binding: ActivityContactDetailBinding by lazy {
@@ -21,7 +23,7 @@ class ContactDetailActivity : AppCompatActivity() {
     // ContactListFragment로부터 받은 데이터에 접근
     private val userInfo by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            intent.getParcelableExtra<UserInfo>(Constants.KEY_USER)
+            intent.getParcelableExtra<UserInfo>(Constants.KEY_USER, UserInfo::class.java)
         } else {
             intent.getParcelableExtra<UserInfo>(Constants.KEY_USER)
         }
