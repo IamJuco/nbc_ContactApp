@@ -3,7 +3,6 @@ package com.example.nbc_sunnyus.ui
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,19 +19,13 @@ class ContactListFragment : Fragment() {
 
     private lateinit var contactListAdapter: ContactListAdapter
 
-    private val userInfo by lazy {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelable(Constants.KEY_USER, UserInfo::class.java)
-        } else {
-            arguments?.getParcelable(Constants.KEY_USER)
-        }
-    }
+    private lateinit var userInfo: UserInfo
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentContactListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -41,6 +34,7 @@ class ContactListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setRecyclerView()
+        setUpData()
         addData()
         setUpListener() // 리스너를 모아두는곳 (클릭리스너 등)
 
@@ -57,10 +51,20 @@ class ContactListFragment : Fragment() {
         })
     }
 
+    private fun setUpData() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable(Constants.KEY_USER, UserInfo::class.java)?.let {
+                userInfo = it
+            }
+         } else {
+            arguments?.getParcelable<UserInfo>(Constants.KEY_USER)?.let {
+                userInfo = it
+            }
+         }
+    }
+
     private fun addData() {
-        userInfo?.let {
-            contactListAdapter.addData(it, contactListAdapter.itemCount)
-        } ?: Log.e("ContactListFragment", "Userinfo 값이 null 입니다.")
+        contactListAdapter.addData(userInfo, contactListAdapter.itemCount)
     }
 
     private fun setRecyclerView() {
