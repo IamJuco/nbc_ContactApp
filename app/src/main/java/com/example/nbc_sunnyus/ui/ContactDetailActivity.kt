@@ -1,5 +1,6 @@
 package com.example.nbc_sunnyus.ui
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,7 +22,7 @@ class ContactDetailActivity : AppCompatActivity() {
         ActivityContactDetailBinding.inflate(layoutInflater)
     }
 
-    private lateinit var userInfo: UserInfo
+    private var userInfo: UserInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,13 +42,13 @@ class ContactDetailActivity : AppCompatActivity() {
     private fun setUpData() {
         // ContactListFragment로부터 받은 데이터에 접근
         userInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            intent?.getParcelableExtra(Constants.KEY_USER, UserInfo::class.java)!!
+            intent?.getParcelableExtra(Constants.KEY_USER, UserInfo::class.java)
         } else {
-            intent?.getParcelableExtra(Constants.KEY_USER)!!
+            intent?.getParcelableExtra(Constants.KEY_USER)
         }
 
         // 받은 데이터를 이미지 뷰 및 텍스트 뷰에 설정
-        userInfo.let {
+        userInfo?.let {
             binding.ivImage.setImageResource(it.image)
             binding.tvName.text = it.name
             binding.tvPhoneNumberData.text = it.phoneNumber
@@ -70,8 +71,7 @@ class ContactDetailActivity : AppCompatActivity() {
     }
 
     // 뒤로 가기 버튼(디바이스)
-    // 싱글턴 객체로 ContactList에 데이터를 전달하므로 finish 처리
-    @Deprecated("Deprecated in Java")
+    @Suppress("DEPRECATION")
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
