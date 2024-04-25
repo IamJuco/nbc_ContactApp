@@ -37,7 +37,7 @@ class ContactDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.contact_detail)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -61,10 +61,7 @@ class ContactDetailActivity : AppCompatActivity() {
 
         // 받은 데이터를 이미지 뷰 및 텍스트 뷰에 설정
         userInfo?.let {
-            //targetApi="S" 관련
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                binding.ivImage.setImageResource(it.image)
-            }
+            binding.ivImage.setImageResource(it.image)
             binding.tvName.text = it.name
             binding.tvPhoneNumberData.text = it.phoneNumber
             binding.tvEmailData.text = it.email
