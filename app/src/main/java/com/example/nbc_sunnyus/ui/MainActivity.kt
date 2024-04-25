@@ -7,7 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_SETTLING
 import com.example.nbc_sunnyus.R
+import com.example.nbc_sunnyus.data.DummyData
 import com.example.nbc_sunnyus.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -26,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
     private val adapter = ViewPager2Adapter(this)
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -38,20 +40,23 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        setupViewPager()
+        setupListener()
+
     }
 
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setupViewPager(){
+    private fun setupViewPager() {
 
-        contactListFragment = ContactListFragment(Constants.dummyItems)
+        contactListFragment = ContactListFragment(DummyData.dummyItems)
         myPageFragment = MyPageFragment()
         adapter.addFragment(contactListFragment)
         adapter.addFragment(myPageFragment)
 
         //Adapter 연결
         binding.apply {
-            viewpager2Main.adapter = ViewPager2Adapter(this@MainActivity)
+            viewpager2Main.adapter = adapter
             TabLayoutMediator(tablayoutMain, viewpager2Main) { tab, position ->
                 when (position) {
                     0 -> tab.icon =
@@ -65,12 +70,28 @@ class MainActivity : AppCompatActivity() {
                     contactListFragment.contactListAdapter.notifyDataSetChanged()
                 }
             }.attach()
-
         }
     }
-    private fun setupListener(){
+
+    private fun setupListener() {
         binding.fabMain.setOnClickListener {
-            DialogAdd(this)
+            DialogAdd(this, this.layoutInflater).show()
         }
+
+        binding.viewpager2Main.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+                if(state == SCROLL_STATE_SETTLING){
+                    contactListFragment.contactListAdapter.notifyDataSetChanged()
+                }
+            }
+        })
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onRestart() {
+        super.onRestart()
+        contactListFragment.contactListAdapter.notifyDataSetChanged()
     }
 }
