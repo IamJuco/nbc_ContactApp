@@ -19,7 +19,7 @@ class MyPageFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMyPageBinding.inflate(inflater, container, false)
         return binding.root
     }
