@@ -1,5 +1,6 @@
 package com.example.nbc_sunnyus.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,11 @@ import com.example.nbc_sunnyus.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
+
+
+    private lateinit var contactListFragment: ContactListFragment
+    private lateinit var myPageFragment: MyPageFragment
+
     //tab 목록 리스트로 묶기
     private val tabTitleArray = arrayOf("연락처", "마이페이지")
 
@@ -18,20 +24,34 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    private val adapter = ViewPager2Adapter(this)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
+    }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setupViewPager(){
+
+        contactListFragment = ContactListFragment(Constants.dummyItems)
+        myPageFragment = MyPageFragment()
+        adapter.addFragment(contactListFragment)
+        adapter.addFragment(myPageFragment)
+
         //Adapter 연결
         binding.apply {
-            viewpager2Main.adapter = ViewPager2Adapter(supportFragmentManager, lifecycle)
+            viewpager2Main.adapter = ViewPager2Adapter(this@MainActivity)
             TabLayoutMediator(tablayoutMain, viewpager2Main) { tab, position ->
                 when (position) {
                     0 -> tab.icon =
@@ -41,9 +61,16 @@ class MainActivity : AppCompatActivity() {
                         ContextCompat.getDrawable(this@MainActivity, R.drawable.tab_mypage)
                 }
                 tab.text = tabTitleArray[position]
+                tab.view.setOnClickListener {
+                    contactListFragment.contactListAdapter.notifyDataSetChanged()
+                }
             }.attach()
 
         }
-
+    }
+    private fun setupListener(){
+        binding.fabMain.setOnClickListener {
+            DialogAdd(this)
+        }
     }
 }
