@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -14,7 +13,6 @@ import com.example.nbc_sunnyus.databinding.ActivityContactDetailBinding
 import com.example.nbc_sunnyus.model.UserInfo
 import com.example.nbc_sunnyus.util.Constants
 
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 class ContactDetailActivity : AppCompatActivity() {
 
     private val binding: ActivityContactDetailBinding by lazy {
