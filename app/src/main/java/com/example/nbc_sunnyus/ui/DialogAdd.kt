@@ -12,7 +12,8 @@ import com.example.nbc_sunnyus.model.UserInfo
 
 class DialogAdd(
     private val context: Context,
-    private val layoutInflater: LayoutInflater
+    private val layoutInflater: LayoutInflater,
+    private val listener: UpdateAdapterListener
 ) {
 
     private lateinit var binding: DialogAddBinding
@@ -37,9 +38,11 @@ class DialogAdd(
 
 
     private fun userInfoListener() {
+
         // 저장 버튼 클릭 설정
         binding.btnSave.setOnClickListener {
             saveContact()
+            listener.update()
             dialog.dismiss()
 
         }
@@ -49,7 +52,6 @@ class DialogAdd(
             dialog.dismiss()
         }
     }
-
 
     fun show() {
         binding = DialogAddBinding.inflate(layoutInflater)

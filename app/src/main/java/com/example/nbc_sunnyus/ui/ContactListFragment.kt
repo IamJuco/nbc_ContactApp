@@ -43,14 +43,6 @@ class ContactListFragment(private val userItems: MutableList<UserInfo>) : Fragme
                 startActivity(intent)
             }
         })
-//        binding.rvMain.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//                recyclerView.adapter?.let {
-//                    it.notifyDataSetChanged()
-//                }
-//            }
-//        })
     }
 
     private fun setRecyclerView() {

@@ -14,8 +14,7 @@ import com.example.nbc_sunnyus.data.DummyData
 import com.example.nbc_sunnyus.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(),UpdateAdapterListener {
 
     private lateinit var contactListFragment: ContactListFragment
     private lateinit var myPageFragment: MyPageFragment
@@ -74,10 +73,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupListener() {
+
         binding.fabMain.setOnClickListener {
-            DialogAdd(this, this.layoutInflater).show()
+            DialogAdd(this, this.layoutInflater,this).show()
         }
 
+        // ViewPage 스와이프 갱신
         binding.viewpager2Main.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageScrollStateChanged(state: Int) {
@@ -89,9 +90,16 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    //리스타트 일때 갱신
     @SuppressLint("NotifyDataSetChanged")
     override fun onRestart() {
         super.onRestart()
+        contactListFragment.contactListAdapter.notifyDataSetChanged()
+    }
+
+    //메인의 ContactListFragment일 때 Dialog 추가 후 갱신
+    @SuppressLint("NotifyDataSetChanged")
+    override fun update() {
         contactListFragment.contactListAdapter.notifyDataSetChanged()
     }
 }
