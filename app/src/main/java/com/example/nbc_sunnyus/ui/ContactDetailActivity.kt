@@ -1,10 +1,9 @@
 package com.example.nbc_sunnyus.ui
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
+import android.util.Log
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +23,16 @@ class ContactDetailActivity : AppCompatActivity() {
 
     private var userInfo: UserInfo? = null
 
+    private val TAG = this.javaClass.simpleName
+
+    //콜백 인스턴스 생성
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            Log.e(TAG, "뒤로가기 클릭")
+            finish()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -37,11 +46,14 @@ class ContactDetailActivity : AppCompatActivity() {
         setUpData()
 
         setUpListener()
+
+        // 뒤로 가기 콜백
+        onBackPressedDispatcher.addCallback(this, callback)
     }
 
     private fun setUpData() {
         // ContactListFragment로부터 받은 데이터에 접근
-        userInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        userInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent?.getParcelableExtra(Constants.KEY_USER, UserInfo::class.java)
         } else {
             intent?.getParcelableExtra(Constants.KEY_USER)
@@ -49,7 +61,10 @@ class ContactDetailActivity : AppCompatActivity() {
 
         // 받은 데이터를 이미지 뷰 및 텍스트 뷰에 설정
         userInfo?.let {
-            binding.ivImage.setImageResource(it.image)
+            //targetApi="S" 관련
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                binding.ivImage.setImageResource(it.image)
+            }
             binding.tvName.text = it.name
             binding.tvPhoneNumberData.text = it.phoneNumber
             binding.tvEmailData.text = it.email
@@ -68,12 +83,5 @@ class ContactDetailActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener {
             finish()
         }
-    }
-
-    // 뒤로 가기 버튼(디바이스)
-    @Suppress("DEPRECATION")
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
     }
 }
