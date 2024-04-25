@@ -3,6 +3,7 @@ package com.example.nbc_sunnyus.ui
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -20,14 +21,7 @@ class ContactDetailActivity : AppCompatActivity() {
         ActivityContactDetailBinding.inflate(layoutInflater)
     }
 
-    // ContactListFragment로부터 받은 데이터에 접근 (P는 티라미슈 버전을 의미)
-    private val userInfo by lazy {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            intent?.getParcelableExtra(Constants.KEY_USER, UserInfo::class.java)
-        } else {
-            intent?.getParcelableExtra(Constants.KEY_USER)
-        }
-    }
+    private lateinit var userInfo: UserInfo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,14 +33,30 @@ class ContactDetailActivity : AppCompatActivity() {
             insets
         }
 
+        setUpData()
+
+        setUpListener()
+    }
+
+    private fun setUpData() {
+        // ContactListFragment로부터 받은 데이터에 접근
+        userInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            intent?.getParcelableExtra(Constants.KEY_USER, UserInfo::class.java)!!
+        } else {
+            intent?.getParcelableExtra(Constants.KEY_USER)!!
+        }
+
         // 받은 데이터를 이미지 뷰 및 텍스트 뷰에 설정
-        userInfo?.let {
+        userInfo.let {
             binding.ivImage.setImageResource(it.image)
             binding.tvName.text = it.name
             binding.tvPhoneNumberData.text = it.phoneNumber
             binding.tvEmailData.text = it.email
             binding.tvTeamData.text = it.team
         }
+    }
+
+    private fun setUpListener() {
 
         // 플로팅 버튼 클릭하여 다이얼로그 띄우기
         binding.btnFloating.setOnClickListener {
