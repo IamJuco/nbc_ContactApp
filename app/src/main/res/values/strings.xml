@@ -7,4 +7,5 @@
     <string name="my_page_img_tag">이미지</string>
     <string name="item_even">연락처1</string>
     <string name="item_odd">연락처1</string>
+    <string name="main_fab">연락처 추가 버튼</string>
 </resources>
