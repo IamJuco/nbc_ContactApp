@@ -12,9 +12,7 @@ import com.example.nbc_sunnyus.model.UserInfo
 
 class DialogAdd(
     private val context: Context,
-    private val layoutInflater: LayoutInflater,
-    private val userInfo: ArrayList<UserInfo>
-
+    private val layoutInflater: LayoutInflater
 ) {
 
     private lateinit var binding: DialogAddBinding
