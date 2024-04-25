@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private val adapter = ViewPager2Adapter(this)
+    private val viewPagerAdapter = ViewPager2Adapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,12 +51,12 @@ class MainActivity : AppCompatActivity() {
 
         contactListFragment = ContactListFragment(DummyData.dummyItems)
         myPageFragment = MyPageFragment()
-        adapter.addFragment(contactListFragment)
-        adapter.addFragment(myPageFragment)
+        viewPagerAdapter.addFragment(contactListFragment)
+        viewPagerAdapter.addFragment(myPageFragment)
 
         //Adapter 연결
         binding.apply {
-            viewpager2Main.adapter = adapter
+            viewpager2Main.adapter = viewPagerAdapter
             TabLayoutMediator(tablayoutMain, viewpager2Main) { tab, position ->
                 when (position) {
                     0 -> tab.icon =
