@@ -41,8 +41,8 @@
 
             <TextView
                 android:id="@+id/tv_name"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:text="@string/contact_person_name"
@@ -62,8 +62,8 @@
 
             <TextView
                 android:id="@+id/tv_phone_number"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="@string/contact_phone_number_name"
@@ -77,8 +77,8 @@
 
             <TextView
                 android:id="@+id/tv_phone_number_data"
-                android:layout_width="215dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="@string/contact_phone_number_data_name"
@@ -98,8 +98,8 @@
 
             <TextView
                 android:id="@+id/tv_email"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:gravity="center"
                 android:text="@string/contact_email_name"
@@ -113,8 +113,8 @@
 
             <TextView
                 android:id="@+id/tv_email_data"
-                android:layout_width="285dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="@string/contact_email_data_name"
@@ -134,8 +134,8 @@
 
             <TextView
                 android:id="@+id/tv_team"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:gravity="center"
                 android:text="@string/contact_team_name"
@@ -143,14 +143,13 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_email_data" />
 
             <TextView
                 android:id="@+id/tv_team_data"
-                android:layout_width="285dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="@string/contact_team_data_name"
@@ -171,8 +170,8 @@
 
             <TextView
                 android:id="@+id/tv_memo"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:gravity="center"
                 android:text="@string/contact_memo_name"
@@ -191,7 +190,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="80dp"
                 android:gravity="center"
-                android:hint="여기에 메모하실 내용을 입력해 주세요"
+                android:hint="@string/contact_hint_memo"
                 android:maxLength="20"
                 android:textSize="17sp"
                 android:textStyle="bold|italic"
