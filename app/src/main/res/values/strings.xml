@@ -5,6 +5,12 @@
     <string name="my_page_introduction_tag">소개</string>
     <string name="my_page_introduction">안녕하세요.^^\n저는 개발자 홍길동 입니다.\n만나서 반갑습니다.\n앞으로도 잘 부탁 드립니다.</string>
     <string name="my_page_img_tag">이미지</string>
+    <string name="dialog_add_name_tag">이름</string>
+    <string name="dialog_add_phoneNumber_tag">전화번호</string>
+    <string name="dialog_add_email_tag">이메일</string>
+    <string name="dialog_add_team_tag">소속</string>
+    <string name="dialog_add_save_button">저장</string>
+    <string name="dialog_add_cancel_button">취소</string>
     <string name="item_even">연락처1</string>
     <string name="item_odd">연락처1</string>
     <string name="main_fab">연락처 추가 버튼</string>
