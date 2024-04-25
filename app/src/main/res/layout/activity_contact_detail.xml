@@ -171,16 +171,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_team_data" />
 
-            <!--한 줄에 메모 가능한 글자 수는 10자로 하여 스크롤뷰 이용-->
             <EditText
                 android:id="@+id/et_memo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="80dp"
                 android:gravity="center"
-                android:hint="메모 입력"
-                android:maxLength="10"
-                android:textSize="15sp"
+                android:hint="여기에 메모하실 내용을 입력해 주세요"
+                android:maxLength="20"
+                android:textSize="18sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -198,82 +199,28 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <!--스크롤뷰 밖에 버튼 4개 배치-->
     <ImageButton
         android:id="@+id/btn_back"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="680dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="20dp"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:src="@drawable/btn_back" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/btn_back"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="670dp"
-        android:layout_marginEnd="16dp"
-        android:layout_toEndOf="@id/btn_back"
-        android:backgroundTint="#FFDA3D"
-        android:elevation="4dp"
-        app:cardCornerRadius="10dp">
-
-        <TextView
-            android:id="@+id/btn_message"
-            android:layout_width="77dp"
-            android:layout_height="45dp"
-            android:gravity="center"
-            android:scaleType="centerCrop"
-            android:text="Message"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/btn_back"
-        android:layout_marginStart="210dp"
-        android:layout_marginTop="670dp"
-        android:layout_marginEnd="20dp"
-        android:layout_toEndOf="@id/btn_back"
-        android:backgroundTint="#FFF056"
-        android:elevation="4dp"
-        app:cardCornerRadius="10dp">
-
-        <TextView
-            android:id="@+id/btn_call"
-            android:layout_width="77dp"
-            android:layout_height="45dp"
-            android:gravity="center"
-            android:scaleType="centerCrop"
-            android:src="@drawable/btn_back"
-            android:text="Call"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-    </androidx.cardview.widget.CardView>
-
-    <!--메인 액티비티와 같은 리소스-->
-    <ImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_floating"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignTop="@+id/cardView"
-        android:layout_alignBottom="@+id/cardView"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="11dp"
-        android:layout_toEndOf="@+id/cardView"
-        android:background="@android:color/transparent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/btn_floating" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/clr_FF7900"
+        android:src="@drawable/btn_contact"
+        app:maxImageSize="30dp"
+        app:shapeAppearanceOverlay="@style/Circle" />
 
 </RelativeLayout>
