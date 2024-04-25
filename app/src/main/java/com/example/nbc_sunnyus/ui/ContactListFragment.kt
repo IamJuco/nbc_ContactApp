@@ -1,26 +1,22 @@
 package com.example.nbc_sunnyus.ui
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nbc_sunnyus.data.dummyItem
+import androidx.recyclerview.widget.RecyclerView
 import com.example.nbc_sunnyus.databinding.FragmentContactListBinding
 import com.example.nbc_sunnyus.model.UserInfo
 import com.example.nbc_sunnyus.util.Constants
 
-class ContactListFragment : Fragment() {
+class ContactListFragment(private val userItems: MutableList<UserInfo>) : Fragment() {
 
     private lateinit var binding: FragmentContactListBinding
 
-    private lateinit var userInfo: UserInfo
-
     lateinit var contactListAdapter: ContactListAdapter
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,8 +31,6 @@ class ContactListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setRecyclerView()
-        setUpData()
-        addData()
         setUpListener() // 리스너를 모아두는곳 (클릭리스너 등)
 
     }
@@ -50,27 +44,21 @@ class ContactListFragment : Fragment() {
                 startActivity(intent)
             }
         })
-    }
-
-    private fun setUpData() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelable(Constants.KEY_USER, UserInfo::class.java)?.let {
-                userInfo = it
-            }
-         } else {
-            arguments?.getParcelable<UserInfo>(Constants.KEY_USER)?.let {
-                userInfo = it
-            }
-         }
-    }
-
-    private fun addData() {
-        contactListAdapter.addData(userInfo, contactListAdapter.itemCount)
+//        binding.rvMain.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                recyclerView.adapter?.let {
+//                    it.notifyDataSetChanged()
+//                }
+//            }
+//        })
     }
 
     private fun setRecyclerView() {
-        contactListAdapter = ContactListAdapter(dummyItem.toMutableList())
+        contactListAdapter = ContactListAdapter(userItems)
         binding.rvMain.adapter = contactListAdapter
-        binding.rvMain.layoutManager = LinearLayoutManager(context)
+        binding.rvMain.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
+
 }
