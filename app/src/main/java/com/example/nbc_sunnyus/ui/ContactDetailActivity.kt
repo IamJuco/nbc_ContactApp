@@ -2,7 +2,6 @@ package com.example.nbc_sunnyus.ui
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,12 +20,9 @@ class ContactDetailActivity : AppCompatActivity() {
 
     private var userInfo: UserInfo? = null
 
-    private val TAG = this.javaClass.simpleName
-
     //콜백 인스턴스 생성
     private val callback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            Log.e(TAG, "뒤로가기 클릭")
             finish()
         }
     }
@@ -71,7 +67,7 @@ class ContactDetailActivity : AppCompatActivity() {
 
         // 플로팅 버튼 클릭하여 다이얼로그 띄우기
         binding.btnFloating.setOnClickListener {
-            // TODO
+            DialogAdd(this, this.layoutInflater).show()
         }
 
         // 뒤로 가기 버튼(화면)
