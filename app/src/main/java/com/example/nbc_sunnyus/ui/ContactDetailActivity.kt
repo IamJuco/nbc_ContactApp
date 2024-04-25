@@ -12,7 +12,7 @@ import com.example.nbc_sunnyus.databinding.ActivityContactDetailBinding
 import com.example.nbc_sunnyus.model.UserInfo
 import com.example.nbc_sunnyus.util.Constants
 
-class ContactDetailActivity : AppCompatActivity(),UpdataAdapterListener {
+class ContactDetailActivity : AppCompatActivity(),UpdateAdapterListener {
 
     private val binding: ActivityContactDetailBinding by lazy {
         ActivityContactDetailBinding.inflate(layoutInflater)
