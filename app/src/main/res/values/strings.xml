@@ -11,4 +11,6 @@
     <string name="dialog_add_team_tag">소속</string>
     <string name="dialog_add_save_button">저장</string>
     <string name="dialog_add_cancel_button">취소</string>
+    <string name="item_even">연락처1</string>
+    <string name="item_odd">연락처1</string>
 </resources>
