@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-parcelize")
+
 }
 
 android {
@@ -46,9 +47,16 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    //viewpager2
+    implementation(libs.androidx.viewpager2)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //플러팅 버튼 - material 의존성 추가
+    implementation(libs.material.v130alpha02)
 
     //CircleView
     implementation(libs.circleimageview)
