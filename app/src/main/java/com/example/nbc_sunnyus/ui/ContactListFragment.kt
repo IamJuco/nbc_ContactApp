@@ -17,9 +17,10 @@ class ContactListFragment : Fragment() {
 
     private lateinit var binding: FragmentContactListBinding
 
-    private lateinit var contactListAdapter: ContactListAdapter
-
     private lateinit var userInfo: UserInfo
+
+    lateinit var contactListAdapter: ContactListAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +45,7 @@ class ContactListFragment : Fragment() {
         contactListAdapter.setItemClickListener(object : ContactListAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 val item = contactListAdapter.getItem(position)
-                val intent = Intent(context, DetailActivity::class.java)
+                val intent = Intent(context, ContactDetailActivity::class.java)
                 intent.putExtra(Constants.KEY_USER, item)
                 startActivity(intent)
             }
