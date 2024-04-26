@@ -13,11 +13,27 @@ import com.example.nbc_sunnyus.model.UserInfo
 class DialogAdd(
     private val context: Context,
     private val layoutInflater: LayoutInflater,
-    private val listener: UpdateAdapterListener
+    private val listener: UpdateAdapterListener?
 ) {
 
     private lateinit var binding: DialogAddBinding
     private lateinit var dialog: AlertDialog
+
+    private fun userInfoListener() {
+
+        // 저장 버튼 클릭 설정
+        binding.btnSave.setOnClickListener {
+            saveContact()
+            listener?.update()
+            dialog.dismiss()
+
+        }
+
+        // 취소 버튼 클릭 설정
+        binding.btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
 
     // 데이터 저장
     private fun saveContact() {
@@ -36,26 +52,8 @@ class DialogAdd(
         Toast.makeText(context, "연락처 추가가 완료되었습니다", Toast.LENGTH_SHORT).show()
     }
 
-
-    private fun userInfoListener() {
-
-        // 저장 버튼 클릭 설정
-        binding.btnSave.setOnClickListener {
-            saveContact()
-            listener.update()
-            dialog.dismiss()
-
-        }
-
-        // 취소 버튼 클릭 설정
-        binding.btnCancel.setOnClickListener {
-            dialog.dismiss()
-        }
-    }
-
     fun show() {
         binding = DialogAddBinding.inflate(layoutInflater)
-
         val builder = AlertDialog.Builder(context)
             .setView(binding.root)
 

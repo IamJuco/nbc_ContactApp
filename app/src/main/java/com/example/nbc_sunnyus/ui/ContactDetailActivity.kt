@@ -12,7 +12,7 @@ import com.example.nbc_sunnyus.databinding.ActivityContactDetailBinding
 import com.example.nbc_sunnyus.model.UserInfo
 import com.example.nbc_sunnyus.util.Constants
 
-class ContactDetailActivity : AppCompatActivity(),UpdateAdapterListener {
+class ContactDetailActivity : AppCompatActivity() {
 
     private val binding: ActivityContactDetailBinding by lazy {
         ActivityContactDetailBinding.inflate(layoutInflater)
@@ -67,7 +67,7 @@ class ContactDetailActivity : AppCompatActivity(),UpdateAdapterListener {
 
         // 플로팅 버튼 클릭하여 다이얼로그 띄우기
         binding.btnFloating.setOnClickListener {
-            DialogAdd(this, this.layoutInflater,this).show()
+            DialogAdd(this, this.layoutInflater,null).show()
         }
 
         // 뒤로 가기 버튼(화면)
@@ -75,7 +75,4 @@ class ContactDetailActivity : AppCompatActivity(),UpdateAdapterListener {
             finish()
         }
     }
-
-    override fun update(){}
-
 }

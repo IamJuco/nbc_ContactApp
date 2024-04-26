@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity(),UpdateAdapterListener {
 
     }
 
-
     @SuppressLint("NotifyDataSetChanged")
     private fun setupViewPager() {
 
@@ -78,7 +77,7 @@ class MainActivity : AppCompatActivity(),UpdateAdapterListener {
             DialogAdd(this, this.layoutInflater,this).show()
         }
 
-        // ViewPage 스와이프 갱신
+        // ViewPage 스와이프 fragment adapter 갱신
         binding.viewpager2Main.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageScrollStateChanged(state: Int) {
