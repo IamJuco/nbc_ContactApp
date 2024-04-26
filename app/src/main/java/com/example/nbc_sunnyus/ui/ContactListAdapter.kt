@@ -27,11 +27,6 @@ class ContactListAdapter(private val items: MutableList<UserInfo>) :
         return items[position]
     }
 
-    fun addData(item: UserInfo, position: Int) {
-        items.add(position, item)
-        notifyItemInserted(position)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             EVEN_VIEW_TYPE -> {
@@ -132,5 +127,4 @@ class ContactListAdapter(private val items: MutableList<UserInfo>) :
             }
         }
     }
-
 }

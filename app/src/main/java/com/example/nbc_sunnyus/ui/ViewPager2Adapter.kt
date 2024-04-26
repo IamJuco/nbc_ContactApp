@@ -1,25 +1,23 @@
 package com.example.nbc_sunnyus.ui
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
+import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class ViewPager2Adapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
-    FragmentStateAdapter(fragmentManager, lifecycle) {
+class ViewPager2Adapter(fragmentActivity: FragmentActivity) :
+    FragmentStateAdapter(fragmentActivity) {
 
-    //페이지 개수
-    override fun getItemCount(): Int = NUM_TABS
+    private var fragments: ArrayList<Fragment> = ArrayList()
 
-    //파라미터: position값, 반환값: Fragment
+    override fun getItemCount(): Int = fragments.size
+
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            0 -> ContactListFragment()
-            else -> MyPageFragment()
-        }
+        return fragments[position]
     }
 
-    companion object {
-        private const val NUM_TABS = 2     //key 값 (사용법 : TabNumbers.NUM_TABS 로 접근 가능)
+    fun addFragment(fragment: Fragment) {
+        fragments.add(fragment)
+        notifyItemInserted(fragments.size - 1)
     }
+
 }
